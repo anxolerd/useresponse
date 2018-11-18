@@ -24,6 +24,10 @@ setup(
     author_email='anxolerd@outlook.com',
     url='https://github.com/anxolerd/useresponse',
     packages=find_packages(),
+    install_requires=[
+        'requests',
+    ],
+    python_requires='>=3.5',
     license='MIT',
     classifiers=[
         'Development Status :: 1 - Planning',
