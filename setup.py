@@ -10,10 +10,16 @@ with open(
     VERSION = re.match(r".*__version__ = '(.*?)'", f.read(), re.S).group(1)
 
 
+with open('README.rst', 'r', encoding='utf-8') as f:
+    readme = f.read()
+
+
 setup(
     name='useresponse',
     version=VERSION,
     description='Python client for Useresponse',
+    long_description=readme,
+    long_description_content_type='text/x-rst',
     author='Oleksandr Kovalchuk',
     author_email='anxolerd@outlook.com',
     url='https://github.com/anxolerd/useresponse',
