@@ -14,7 +14,7 @@ intersphinx_mapping = {
 source_suffix = '.rst'
 master_doc = 'index'
 
-project = 'grpclib'
+project = 'useresponse'
 copyright = '2018, Oleksandr Kovalchuk'
 author = 'Oleksandr Kovalchuk'
 
