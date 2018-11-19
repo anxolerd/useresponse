@@ -71,8 +71,9 @@ class UseresponseSso(object):
         full_name: str,
         email: str,
         user_id: Union[int, str],
-        properties: Optional[Dict[int, str]]=None,
+        properties: Optional[Dict[int, str]] = None,
     ):
+        """asdasda"""
         if properties is None:
             properties = {}
         self.domain: str = domain

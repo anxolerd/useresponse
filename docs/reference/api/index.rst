@@ -1,7 +1,7 @@
-API
-===
+REST API
+========
 
-You can use Useresponse REST API from :py:module:`useresponse.api` module.
+You can use Useresponse REST API from :py:mod:`useresponse.api` module.
 Currently implemented APIs are:
 
 .. toctree::

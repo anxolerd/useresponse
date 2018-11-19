@@ -13,4 +13,4 @@ The following methods are implemented:
 - ``delete``
 
 .. automodule:: useresponse.api.users
-    :members: UserService, SortCriteria
+  :members:

@@ -3,6 +3,7 @@ from typing import Dict, Iterable, Optional
 
 
 class SortCriteria(Enum):
+    """Criterias to sort users in search by"""
     roles = 'roles'
     department = 'department'
     top_rated = 'top_rated'
@@ -11,20 +12,24 @@ class SortCriteria(Enum):
 
 
 class UserService(object):
+    """Service which contains all user-related API calls"""
+
     def __init__(self, transport):
         self._transport = transport
 
     def get(self, id_: int) -> Optional[Dict]:
-        """ Retrieves user by id
+        """Retrieves user by id
 
-        :param: id_ (int) -- user id
+        :param id_: (int) id of the user to retrieve
+        :return: Dict which represents existing user, if any, otherwise None
         """
         return self._transport.get(f'/users/{id_}.json', {})
 
     def get_by_email(self, email: str) -> Dict:
-        """ Retrieves user by email
+        """Retrieves user by email
 
-        :param: email (str) -- user email
+        :param email: (str) email of the user to retrieve
+        :return: Dict which represents existing user, if any, otherwise None
         """
         request_params = {'email': email}
         result = self._transport.get('/users/search.json', request_params)
@@ -40,11 +45,11 @@ class UserService(object):
     ) -> Dict:
         """ Searches for users by given criterias
 
-        :param: sort (SortCriteria) -- criteria for sorting results
-        :param: role (str) -- role of the users
-        :param: search (str) -- query string to search users by
-        :param: page (int) number of page of results to retrieve
-        :param: count (int) number of results per page
+        :param sort: (SortCriteria) criteria for sorting results
+        :param role: (str) role of the users
+        :param search: (str) query string to search users by
+        :param page: (int) number of page of results to retrieve
+        :param count: (int) number of results per page
         """
         if page < 1:
             raise ValueError(f'Page number must be a positive int, got {page}')
@@ -68,15 +73,20 @@ class UserService(object):
         role: Optional[str] = None,
         search: Optional[str] = None,
     ) -> Iterable[Dict]:
-        """ Searches for users by given criterias
+        """Searches for users by given criterias
 
-        Comparing this to ``search`` method, this one is more high-level.
+        Comparing this to :meth:`useresponse.api.users.UserService.search`
+        this method is on the higher level of abstraction.
         User do not have to care about pages and count_per_page, and just
         to iterate through results
 
-        :param: sort (SortCriteria) -- criteria for sorting results
-        :param: role (str) -- role of the users
-        :param: search (str) -- query string to search users by
+        .. code-block:: python
+
+           >>> for user in api.users.search_iter(role='user')
+
+        :param sort: (SortCriteria) criteria for sorting results
+        :param role: (str) role of the users
+        :param search: (str) query string to search users by
         """
         page: int = 1
         total_pages: int = 0
@@ -95,11 +105,15 @@ class UserService(object):
         email: Optional[str] = None,
         full_name: Optional[str] = None,
     ) -> Optional[Dict]:
-        """ Edits user by id
+        """Edits user with given id
 
-        :param: id_ (int) -- user id
-        :param: email (str) -- new email
-        :param: full_name (str) -- new full_name
+        Using this method it is possible to modify user's email and full_name.
+        Please note, that at least one of ``email`` or ``full_name`` param is
+        required.
+
+        :param id_: (int) user id
+        :param email: (str) new email
+        :param full_name: (str) new full_name
         """
         request_params = {}
         if email is not None:
@@ -112,10 +126,10 @@ class UserService(object):
         return result['success'] if result['success'] else None
 
     def change_password(self, id_: int, new_password: str) -> Optional[Dict]:
-        """ Changes password for user
+        """Changes password for user
 
-        :param: id_ (int) -- user id
-        :param: new_password (str) -- new password to set
+        :param id_: (int) user id
+        :param new_password: (str) new password to set
         """
         request_params = {'password': new_password}
         result = self._transport.post(f'/users/{id_}/change-password.json',
@@ -128,10 +142,10 @@ class UserService(object):
         full_name: str,
         password: Optional[str] = None,
     ) -> Optional[Dict]:
-        """ Creates a new user
+        """Creates a new user
 
-        :param: email (str) -- new email
-        :param: full_name (str) -- new full_name
+        :param email: (str) new email
+        :param full_name: (str) new full_name
         """
         request_params = {'email': email, 'full_name': full_name}
         if password is not None:
@@ -140,9 +154,9 @@ class UserService(object):
         return result['success'] if result['success'] else None
 
     def delete(self, id_: int) -> Optional[Dict]:
-        """ Deletes user by id
+        """Deletes user by id
 
-        :param: id_ (int) -- user id
+        :param id_: (int) user id
         """
         result = self._transport.delete(f'/users/{id_}.json')
         return result['success'] if result['success'] else None
