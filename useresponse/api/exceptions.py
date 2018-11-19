@@ -3,22 +3,28 @@ class APIException(Exception):
     pass
 
 
-class InvalidRequestException(APIException):
+class ClientException(APIException):
+    def __init__(self, response):
+        self.response = response
+        super(APIException, self).__init__(self, response)
+
+
+class InvalidRequestException(ClientException):
     """400"""
     pass
 
 
-class UnauthenticatedException(APIException):
+class UnauthenticatedException(ClientException):
     """401"""
     pass
 
 
-class UnauthorizedException(APIException):
+class UnauthorizedException(ClientException):
     """403"""
     pass
 
 
-class OperationConflictException(APIException):
+class OperationConflictException(ClientException):
     """409
     Whenever a resource conflict would be caused by fulfilling the request.
     Duplicate entries, deleting root objects when cascade-delete not supported
@@ -27,11 +33,17 @@ class OperationConflictException(APIException):
     pass
 
 
-class InternalServerError(APIException):
+class ServerError(APIException):
+    def __init__(self, response):
+        self.response = response
+        super(APIException, self).__init__(self, response)
+
+
+class InternalServerError(ServerError):
     """500"""
     pass
 
 
-class ServiceUnavailableError(APIException):
+class ServiceUnavailableError(ServerError):
     """503"""
     pass
