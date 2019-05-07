@@ -5,6 +5,7 @@ from urllib.parse import urljoin
 import requests
 
 from .users import UserService
+from .tickets import TicketsService
 from .exceptions import (
     InvalidRequestException,
     UnauthenticatedException,
@@ -31,6 +32,7 @@ class API(object):
 
         # register services
         self.users: UserService = UserService(self._transport)
+        self.tickets: TicketsService = TicketsService(self._transport)
 
     def __setattr__(self, name: str, value: Any) -> None:
         protected_attrs = ('users',)
