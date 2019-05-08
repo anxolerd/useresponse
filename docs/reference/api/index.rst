@@ -8,6 +8,7 @@ Currently implemented APIs are:
   :maxdepth: 2
 
   users
+  tickets
 
 To use api, you have to initialize it first with the useresponse domain and the
 API token, obtained from useresponse.
@@ -23,3 +24,4 @@ name:
 .. code:: python
 
    user = api.users.get(42)
+   tickets = api.tickets.search(page=3)
