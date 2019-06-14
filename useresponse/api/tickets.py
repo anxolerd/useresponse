@@ -116,9 +116,9 @@ class TicketService(object):
                 sort,
                 page=page,
             )
-            total_pages = results['totalPages']
+            total_pages = results['success']['totalPages']
             page += 1
-            for value in results['data']:
+            for value in results['success']['data']:
                 yield value
             if page > total_pages:
                 break
