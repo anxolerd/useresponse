@@ -2,6 +2,22 @@
 Changelog
 =========
 
+0.0.4
+=====
+
+New features
+------------
+
+- Implement tickets API (kudos to `@bujhm131313 <https://github.com/bujhm131313>`_):
+
+  - searching tickets
+
+- Implement objects API (kudos to `@shchotse <https://github.com/shchotse>`_):
+
+  - getting objects
+  - searching objects
+
+
 0.0.3
 =====
 

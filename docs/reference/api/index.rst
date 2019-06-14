@@ -9,6 +9,7 @@ Currently implemented APIs are:
 
   users
   tickets
+  objects
 
 To use api, you have to initialize it first with the useresponse domain and the
 API token, obtained from useresponse.
