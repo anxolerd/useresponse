@@ -6,6 +6,7 @@ import requests
 
 from .users import UserService
 from .tickets import TicketService
+from .objects import ObjectService
 from .exceptions import (
     InvalidRequestException,
     UnauthenticatedException,
@@ -33,9 +34,10 @@ class API(object):
         # register services
         self.users: UserService = UserService(self._transport)
         self.tickets: TicketService = TicketService(self._transport)
+        self.objects: ObjectService = ObjectService(self._transport)
 
     def __setattr__(self, name: str, value: Any) -> None:
-        protected_attrs = ('users', 'tickets',)
+        protected_attrs = ('users', 'tickets', 'objects',)
         if name in protected_attrs and hasattr(self, name):
             raise ValueError(f'Cannot modify attribute {name}')
         super(API, self).__setattr__(name, value)
