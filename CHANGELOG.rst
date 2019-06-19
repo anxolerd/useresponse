@@ -2,6 +2,11 @@
 Changelog
 =========
 
+0.0.5
+=====
+
+- Fix objects API
+
 0.0.4
 =====
 
