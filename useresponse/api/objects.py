@@ -59,6 +59,7 @@ class ObjectService(object):
         :param content: (str) The content of a new object.
         Supports BBcode, but HTML tags are not allowed.
         Max content length: 12000 chars
+        :param extended_parameters: (dict) Other parameters (JSON serializable)
         :return: Dict which represents existing object, if any, otherwise None
         """
         request_params = {
@@ -69,5 +70,5 @@ class ObjectService(object):
                 'content': content,
             }
         }
-        result = self._transport.post('/objects.json', request_params)
+        result = self._transport.post_json('/objects.json', request_params)
         return result['success'] if result['success'] else None

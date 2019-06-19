@@ -59,6 +59,11 @@ class _Transport(object):
         response = requests.post(self._get_url(path), data=body)
         return self._process_response(response)
 
+    def post_json(self, path: str, body: Dict[str, Any]) -> Optional[Dict]:
+        body = dict(body, **{'apiKey': self._api_token})
+        response = requests.post(self._get_url(path), json=body)
+        return self._process_response(response)
+
     def put(self, path: str, body: Dict[str, Any]) -> Optional[Dict]:
         body = dict(body, **{'apiKey': self._api_token})
         response = requests.put(self._get_url(path), data=body)
