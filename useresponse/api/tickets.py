@@ -73,7 +73,7 @@ class TicketService(object):
         if author_id is not None:
             request_params['author_id'] = author_id
         if custom_fields is not None:
-            request_params['custom_fields'] = custom_fields
+            request_params.update(custom_fields)
         if sort is not None:
             request_params['sort'] = sort.value
 
