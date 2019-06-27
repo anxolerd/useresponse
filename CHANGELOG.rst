@@ -2,6 +2,11 @@
 Changelog
 =========
 
+0.0.6
+=====
+
+- Fix tickets custom_fields search parameter implementation
+
 0.0.5
 =====
 
