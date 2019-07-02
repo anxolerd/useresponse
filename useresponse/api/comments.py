@@ -24,10 +24,10 @@ class CommentService(object):
         :param object_id: (int) object id to find comments on
         :param is_private: (int) comment status to filter on
         :param sort: (CommentSort) comment sort to filter on
-        :param page: (int) number of results to retrieve
+        :param page: (int) page to retrieve. With this option set useresponse
+        will return selected page with limited number of comments. Only
+        useresepsone knows how big is this number
         """
-        if page is not None:
-            raise ValueError(f'Page number must be a positive int, got {page}')
         request_params = {
         }
         if page is not None:
