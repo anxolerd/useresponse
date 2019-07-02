@@ -6,6 +6,7 @@ import requests
 
 from .users import UserService
 from .tickets import TicketService
+from .comments import CommentService
 from .objects import ObjectService
 from .exceptions import (
     InvalidRequestException,
@@ -35,6 +36,7 @@ class API(object):
         self.users: UserService = UserService(self._transport)
         self.tickets: TicketService = TicketService(self._transport)
         self.objects: ObjectService = ObjectService(self._transport)
+        self.comments: CommentService = CommentService(self._transport)
 
     def __setattr__(self, name: str, value: Any) -> None:
         protected_attrs = ('users', 'tickets', 'objects',)
