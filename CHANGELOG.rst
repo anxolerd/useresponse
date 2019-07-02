@@ -2,6 +2,11 @@
 Changelog
 =========
 
+0.0.7
+=====
+
+- Implement comments search api method
+
 0.0.6
 =====
 
