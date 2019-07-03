@@ -5,7 +5,7 @@ Changelog
 0.0.7
 =====
 
-- Implement comments search api method
+- Implement comments search_by_object_id api method
 
 0.0.6
 =====

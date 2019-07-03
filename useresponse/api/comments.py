@@ -13,7 +13,7 @@ class CommentService(object):
     def __init__(self, transport):
         self._transport = transport
 
-    def search(
+    def search_by_object_id(
         self,
         object_id: int = 0,
         is_private: Optional[int] = 0,
