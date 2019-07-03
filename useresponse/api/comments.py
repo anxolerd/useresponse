@@ -10,13 +10,10 @@ class CommentSort(Enum):
 class CommentService(object):
     """Service which contains comment-related API calls"""
 
-    def __init__(self, transport):
-        self._transport = transport
-
     def search_by_object_id(
         self,
         object_id: int = 0,
-        is_private: Optional[int] = 0,
+        is_private: bool = False,
         sort: Optional[CommentSort] = None,
         page: int = None,
     ) -> Optional[Dict]:
@@ -28,12 +25,9 @@ class CommentService(object):
         will return selected page with limited number of comments. Only
         useresepsone knows how big is this number
         """
-        request_params = {
-        }
+        request_params = {'is_private': int(is_private)}
         if page is not None:
             request_params['page'] = page
-        if is_private is not None:
-            request_params['is_private'] = is_private
         if sort is not None:
             request_params['sort'] = sort.value
 
@@ -41,3 +35,6 @@ class CommentService(object):
             f'/objects/{object_id}/comments.json',
             request_params
         )
+
+    def __init__(self, transport):
+        self._transport = transport
